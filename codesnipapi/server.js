@@ -59,13 +59,14 @@ app.post('/api/addCodeSnippet', function(req, res){
 });
 
 app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
-    CodeSnippet.remove({_id : req.params.codeSnipId}, function(err, codeSnippet){
+    CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
         if(err){
             console.log(err);
         }
+        codeSnippet.remove();
     });
-});
-
+}); 
+ 
 //Run
 app.listen('8082');
 console.log('App is listening on 8082 port');
