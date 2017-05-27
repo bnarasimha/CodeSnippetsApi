@@ -35,6 +35,17 @@ app.get('/api/codeSnippets', function(req, res){
     });
 });
 
+app.get('/api/codeSnippets/:codeSnipId', function(req, res){
+    console.log('inside get');
+    CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
+        if(err){
+            console.log(err);
+        }
+        console.log(codeSnippet); 
+        res.json(codeSnippet);
+    });
+});
+
 app.post('/api/addCodeSnippet', function(req, res){
     var newCodeSnippet = new CodeSnippet(
         {
@@ -44,6 +55,14 @@ app.post('/api/addCodeSnippet', function(req, res){
         });    
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
         if(err) return handleError(err);
+    });
+});
+
+app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
+    CodeSnippet.remove({_id : req.params.codeSnipId}, function(err, codeSnippet){
+        if(err){
+            console.log(err);
+        }
     });
 });
 
