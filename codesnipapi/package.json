@@ -1,0 +1,19 @@
+{
+  "name": "codecnipapi",
+  "description": "Api to get all Code Snippets info",
+  "main": "server.js",
+  "version": "0.0.0",
+  "author": {
+    "email": "",
+    "name": "Narasimha Badrinath",
+    "url": "narasimhabadrinath.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.2",
+    "morgan": "^1.8.2"
+  }
+}
