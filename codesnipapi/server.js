@@ -24,6 +24,7 @@ var CodeSnippet = mongoose.model('CodeSnippet', {
     title : String
 });
 
+// Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
     CodeSnippet.find({}, function(err, codeSnippets){
         if(err){
@@ -35,8 +36,20 @@ app.get('/api/codeSnippets', function(req, res){
     });
 });
 
+// Search Code Snippets
+app.get('/api/searchCodeSnippets/:searchText', function(req, res){
+    CodeSnippet.find({title:req.params.searchText}, function(err, codeSnippets){
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        console.log(codeSnippets); 
+        res.json(codeSnippets);
+    });
+});
+
+// Get Code Snip Detail
 app.get('/api/codeSnippets/:codeSnipId', function(req, res){
-    console.log('inside get');
     CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
         if(err){
             console.log(err);
@@ -46,6 +59,7 @@ app.get('/api/codeSnippets/:codeSnipId', function(req, res){
     });
 });
 
+// Add Code Snippet
 app.post('/api/addCodeSnippet', function(req, res){
     var newCodeSnippet = new CodeSnippet(
         {
@@ -58,6 +72,7 @@ app.post('/api/addCodeSnippet', function(req, res){
     });
 });
 
+// Delete Code Snippet
 app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
     CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
         if(err){
