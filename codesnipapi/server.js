@@ -40,12 +40,36 @@ app.get('/api/codeSnippets', function(req, res){
 
 // Search Code Snippets
 app.get('/api/searchCodeSnippets/:searchText', function(req, res){
-    CodeSnippet.find({title:req.params.searchText}, function(err, codeSnippets){
+    console.log('SearchText:' + req.params.searchText);
+    if(req.params.searchText == 'undefined' || req.params.searchText == ''){
+        CodeSnippet.find({}, function(err, codeSnippets){
+            if(err){
+                console.log(err);
+                res.send(err);
+            }
+            console.log(codeSnippets); 
+            res.json(codeSnippets);
+        });
+    }
+    else{
+        CodeSnippet.find({title:req.params.searchText}, function(err, codeSnippets){
+            if(err){
+                console.log(err);
+                res.send(err);
+            }
+            console.log(codeSnippets); 
+            res.json(codeSnippets);
+        });
+    }
+    
+});
+
+//Filter code snippets based on language
+app.get('/api/CodeSnippets/language/:language', function(req, res){
+    CodeSnippet.find({language:req.params.language}, function(err, codeSnippets){
         if(err){
             console.log(err);
-            res.send(err);
         }
-        console.log(codeSnippets); 
         res.json(codeSnippets);
     });
 });
