@@ -41,7 +41,7 @@ app.get('/api/codeSnippets', function(req, res){
 // Search Code Snippets
 app.get('/api/searchCodeSnippets/:searchText', function(req, res){
     var searchText = req.params.searchText;
-    CodeSnippet.find({'title':searchText}, function(err, codeSnippets){
+    CodeSnippet.find({'title': new RegExp(searchText, 'i')}, function(err, codeSnippets){
         if(err){
             res.send(err);
         }
