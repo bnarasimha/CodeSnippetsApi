@@ -40,28 +40,13 @@ app.get('/api/codeSnippets', function(req, res){
 
 // Search Code Snippets
 app.get('/api/searchCodeSnippets/:searchText', function(req, res){
-    console.log('SearchText:' + req.params.searchText);
-    if(req.params.searchText == 'undefined' || req.params.searchText == ''){
-        CodeSnippet.find({}, function(err, codeSnippets){
-            if(err){
-                console.log(err);
-                res.send(err);
-            }
-            console.log(codeSnippets); 
-            res.json(codeSnippets);
-        });
-    }
-    else{
-        CodeSnippet.find({title:req.params.searchText}, function(err, codeSnippets){
-            if(err){
-                console.log(err);
-                res.send(err);
-            }
-            console.log(codeSnippets); 
-            res.json(codeSnippets);
-        });
-    }
-    
+    var searchText = req.params.searchText;
+    CodeSnippet.find({'title':searchText}, function(err, codeSnippets){
+        if(err){
+            res.send(err);
+        }
+        res.json(codeSnippets);
+    });
 });
 
 //Filter code snippets based on language
