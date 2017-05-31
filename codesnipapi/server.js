@@ -73,7 +73,6 @@ app.get('/api/codeSnippets/:codeSnipId', function(req, res){
         if(err){
             console.log(err);
         }
-        console.log(codeSnippet); 
         res.json(codeSnippet);
     });
 });
@@ -97,7 +96,8 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
         if(err){
             console.log(err);
         }
-        codeSnippet.remove();
+        if(codeSnippet)
+            codeSnippet.remove();
     });
 }); 
  
