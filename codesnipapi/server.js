@@ -26,6 +26,21 @@ var CodeSnippet = mongoose.model('CodeSnippet', {
     title : String
 });
 
+// Language Model
+var Language = mongoose.model('language', {
+    languageName : String
+});
+
+// Get all languages
+app.get('/api/languages', function(req, res){
+    Language.find(function(err, languages){
+        if(err){
+            console.log(err);
+        }
+        res.json(languages);
+    })
+});
+
 // Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
     CodeSnippet.find({}, function(err, codeSnippets){
