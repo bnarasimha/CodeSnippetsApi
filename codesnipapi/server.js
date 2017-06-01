@@ -53,14 +53,6 @@ app.get('/api/codeSnippets', function(req, res){
     });
 });
 
-app.get('/api/languages', function(req, res){
-    var languages = [{'languageId':'1', 'languageName':'All'},
-                            {'languageId':'2', 'languageName':'C#'},
-                            {'languageId':'3', 'languageName':'Java'},
-                            {'languageId':'4', 'languageName':'Python'}];
-    res.json(languages);
-});
-
 // Search Code Snippets
 app.get('/api/searchCodeSnippets/:searchText', function(req, res){
     var searchText = req.params.searchText;
