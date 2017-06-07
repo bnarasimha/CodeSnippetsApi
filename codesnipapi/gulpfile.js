@@ -4,7 +4,7 @@ var zip = require('gulp-zip');
 gulp.task('deploy', function(){
     return gulp.src(['**'])
     .pipe(zip('deploy.zip'))
-    .pipe(gulp.dest('../'))
+    .pipe(gulp.dest('dest/'))
 });
 
 gulp.task('default', function(){
