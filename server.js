@@ -109,5 +109,5 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
 }); 
  
 //Run
-app.listen('8080');
-console.log('App is listening on 8080 port');
+app.listen('9000');
+console.log('App is listening on 9000 port');
