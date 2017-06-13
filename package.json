@@ -1,5 +1,5 @@
 {
-  "name": "codecnipapi",
+  "name": "apicodesnippets",
   "description": "Api to get all Code Snippets info",
   "main": "server.js",
   "version": "0.0.0",
@@ -7,6 +7,9 @@
     "email": "",
     "name": "Narasimha Badrinath",
     "url": "narasimhabadrinath.com"
+  },
+  "scripts": {
+    "start":"node server.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
