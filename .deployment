@@ -1,2 +1,3 @@
 [config]
+DEPLOYMENT_TARGET = "D:\home\site\wwwroot"
 command = deploy.cmd
