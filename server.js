@@ -12,7 +12,7 @@ mongoose.connect('mongodb://bnarasimha21:1nvin$ible@cluster0-shard-00-00-shwiy.m
 
 // Configuration
 app.use(cors());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
