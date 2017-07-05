@@ -8,6 +8,11 @@
     "name": "Narasimha Badrinath",
     "url": "narasimhabadrinath.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://bnarasimha21@bitbucket.org/codesnippers/codesnipapi.git"
+  },
+  "license": "0.0.0",
   "scripts": {
     "start": "node server.js"
   },
