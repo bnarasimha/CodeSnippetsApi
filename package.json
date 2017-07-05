@@ -12,7 +12,7 @@
     "type": "git",
     "url": "https://bnarasimha21@bitbucket.org/codesnippers/codesnipapi.git"
   },
-  "license": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js"
   },
