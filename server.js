@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-mongoose.connect('mongodb://bnarasimha21:1nvin$ible@cluster0-shard-00-00-shwiy.mongodb.net:27017/CodeSnippets?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
+var cfg = require('./config')
+mongoose.connect(cfg.MongoUri);
 
 // Configuration
 app.use(cors());
@@ -109,6 +110,6 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
 }); 
  
 //Run
-var port = 8081;
+var port = 81;
 app.listen(port);
 console.log('App is listening on %d port', port);
