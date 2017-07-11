@@ -1,3 +1,4 @@
+set -x;
 export NODE_ENV=$1; 
 cd api; 
 sudo rm -r node_modules; 
