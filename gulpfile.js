@@ -7,6 +7,11 @@ gulp.task('deploy', function(){
     .pipe(gulp.dest('dest/'))
 });
 
-gulp.task('default', function(){
-    gulp.run('deploy');
+gulp.task('deploysh', function(){
+    return gulp.src(['config/deploy.sh'])
+    .pipe(gulp.dest('dest/'))
+})
+
+gulp.task('default', ['deploysh', 'deploy'], function(){
+    
 })
