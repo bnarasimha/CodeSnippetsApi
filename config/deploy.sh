@@ -1,4 +1,4 @@
-set NODE_ENV=$1; 
+export NODE_ENV=$1; 
 cd api; 
 sudo rm -r node_modules; 
 sudo unzip -o ~/artifacts/api/deploy.zip; 
