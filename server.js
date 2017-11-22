@@ -32,6 +32,21 @@ var Language = mongoose.model('language', {
     languageName : String
 });
 
+var User = mongoose.model('User', {
+    userId : String,
+    isAdmin : Boolean
+});
+
+// Get User
+app.get('/api/getUser/:userName', function(req, res){
+    User.findOne({ 'userId' : req.params.userName}, function(err, user){
+        if(err){
+            console.log(err);
+        }
+        res.json(user);
+    });
+}); 
+
 // Get all languages
 app.get('/api/languages', function(req, res){
     Language.find(function(err, languages){
@@ -108,6 +123,8 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
             codeSnippet.remove();
     });
 }); 
+
+
  
 //Run
 var port = 8081;
