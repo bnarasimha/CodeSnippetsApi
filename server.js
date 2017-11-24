@@ -47,6 +47,20 @@ app.get('/api/getUser/:userName', function(req, res){
     });
 }); 
 
+//Add User
+app.post('/api/addUser', function(req, res){
+
+    var user = new User({
+        userId: req.body.userId,
+        isAdmin: req.body.isAdmin
+    });
+
+    User.create(user, function(err, user){
+        if(err) return handleError(err);
+    });
+});
+
+
 // Get all languages
 app.get('/api/languages', function(req, res){
     Language.find(function(err, languages){
