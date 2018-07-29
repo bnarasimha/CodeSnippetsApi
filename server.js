@@ -127,7 +127,6 @@ app.post('/api/addCodeSnippet', function(req, res){
     });
 });
 
-
 // Update Code Snippet
 app.post('/api/editCodeSnippet', function(req, res){
 
@@ -140,6 +139,29 @@ app.post('/api/editCodeSnippet', function(req, res){
     var query = { _id: req.body._id}
     CodeSnippet.findByIdAndUpdate(query, { $set : newCodeSnippet }, { new : true } , function(err, codeSnippets){
         if(err)  return handleError(err);
+    });
+});
+
+// Add Category
+app.post('/api/addCategory', function(req, res){
+    var newCategory = new Category(
+        {
+            languageName:req.body.language
+        });    
+    Language.create(newCategory, function(err, codeSnippets){
+        if(err) return handleError(err);
+    });
+});
+
+// Updated Category
+app.post('/api/updateCategory', function(req, res){
+    var newCategory = new Category(
+        {
+            languageName:req.body.language
+        });    
+    var query = { _id : req.body._id }
+    Language.findOneAndUpdate(query, { $set : newCategory }, {new :true }, function(err, category){
+        if(err) return handleError(err);
     });
 });
 
