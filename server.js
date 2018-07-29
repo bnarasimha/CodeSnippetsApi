@@ -142,12 +142,22 @@ app.post('/api/editCodeSnippet', function(req, res){
     });
 });
 
+// Get Language Detail
+app.get('/api/languageDetail/:languageId', function(req, res){
+    Language.findById(req.params.languageId, function(err, language){
+        if(err){
+            console.log(err);
+        }
+        res.json(language);
+    });
+});
+
 // Add Category
 app.post('/api/addCategory', function(req, res){
-    var newCategory = new Category(
+    var newCategory = new Language(
         {
-            languageName:req.body.language
-        });    
+            languageName:req.body.languageName
+        });
     Language.create(newCategory, function(err, codeSnippets){
         if(err) return handleError(err);
     });
@@ -155,15 +165,29 @@ app.post('/api/addCategory', function(req, res){
 
 // Updated Category
 app.post('/api/updateCategory', function(req, res){
-    var newCategory = new Category(
+    var newCategory = 
         {
-            languageName:req.body.language
-        });    
+            languageName:req.body.languageName
+        };
     var query = { _id : req.body._id }
-    Language.findOneAndUpdate(query, { $set : newCategory }, {new :true }, function(err, category){
-        if(err) return handleError(err);
+    Language.findByIdAndUpdate(query, { $set : newCategory }, {new :true }, function(err, category){
+        if(err) {
+            console.log(err);
+            return handleError(err);
+        }
     });
 });
+
+// Delete Code Snippet
+app.delete('/api/deleteCategory/:languageId', function(req, res){
+    Language.findById(req.params.languageId, function(err, Language){
+        if(err){
+            console.log(err);
+        }
+        if(Language)
+            Language.remove();
+    });
+}); 
 
 // Delete Code Snippet
 app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
