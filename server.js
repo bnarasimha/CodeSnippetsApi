@@ -127,6 +127,22 @@ app.post('/api/addCodeSnippet', function(req, res){
     });
 });
 
+
+// Update Code Snippet
+app.post('/api/editCodeSnippet', function(req, res){
+
+    var newCodeSnippet =    {
+                                language : req.body.language,
+                                title : req.body.title,
+                                codesnippet: req.body.codesnippet
+                            };
+
+    var query = { _id: req.body._id}
+    CodeSnippet.findByIdAndUpdate(query, { $set : newCodeSnippet }, { new : true } , function(err, codeSnippets){
+        if(err)  return handleError(err);
+    });
+});
+
 // Delete Code Snippet
 app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
     CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
