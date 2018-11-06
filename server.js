@@ -24,7 +24,8 @@ app.use(methodOverride());
 var CodeSnippet = mongoose.model('CodeSnippet', {
     codesnippet : String,
     language : String,
-    title : String
+    title : String,
+    userId : String
 });
 
 // Language Model
@@ -83,10 +84,23 @@ app.get('/api/codeSnippets', function(req, res){
     });
 });
 
+// Get only My Code Snippets
+app.get('/api/getMyCodeSnippets/:userId', function(req, res){
+    var userId = req.params.userId;
+    CodeSnippet.find({'userId': userId}, function(err, codeSnippets){
+        if(err){
+            res.send(err);
+        }
+        res.json(codeSnippets);
+    });
+});
+
 // Search Code Snippets
-app.get('/api/searchCodeSnippets/:searchText', function(req, res){
+app.get('/api/searchCodeSnippets/:userId/:searchText', function(req, res){
+    var userId = req.params.userId;
     var searchText = req.params.searchText;
-    CodeSnippet.find({'title': new RegExp(searchText, 'i')}, function(err, codeSnippets){
+
+    CodeSnippet.find({'userId': userId, 'title': new RegExp(searchText, 'i')}, function(err, codeSnippets){
         if(err){
             res.send(err);
         }
@@ -95,8 +109,9 @@ app.get('/api/searchCodeSnippets/:searchText', function(req, res){
 });
 
 //Filter code snippets based on language
-app.get('/api/CodeSnippets/language/:language', function(req, res){
-    CodeSnippet.find({language:req.params.language}, function(err, codeSnippets){
+app.get('/api/CodeSnippets/language/:userId/:language', function(req, res){
+    var userId = req.params.userId;
+    CodeSnippet.find({'userId': userId, language:req.params.language}, function(err, codeSnippets){
         if(err){
             console.log(err);
         }
@@ -120,8 +135,10 @@ app.post('/api/addCodeSnippet', function(req, res){
         {
             language:req.body.language,
             title: req.body.title,
-            codesnippet: req.body.codesnippet
+            codesnippet: req.body.codesnippet,
+            userId: req.body.userId
         });    
+    console.log(newCodeSnippet.userId);
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
         if(err) return handleError(err);
     });
