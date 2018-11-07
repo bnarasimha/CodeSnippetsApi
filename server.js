@@ -39,8 +39,8 @@ var User = mongoose.model('User', {
 });
 
 // Get User
-app.get('/api/getUser/:userName', function(req, res){
-    User.findOne({ 'userId' : req.params.userName}, function(err, user){
+app.get('/api/getUser/:userId', function(req, res){
+    User.findOne({ 'userId' : req.params.userId}, function(err, user){
         if(err){
             console.log(err);
         }
