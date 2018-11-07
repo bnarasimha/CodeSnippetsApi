@@ -30,7 +30,8 @@ var CodeSnippet = mongoose.model('CodeSnippet', {
 
 // Language Model
 var Language = mongoose.model('language', {
-    languageName : String
+    languageName : String,
+    categoryType : String
 });
 
 var User = mongoose.model('User', {
@@ -172,7 +173,8 @@ app.get('/api/languageDetail/:languageId', function(req, res){
 app.post('/api/addCategory', function(req, res){
     var newCategory = new Language(
         {
-            languageName:req.body.languageName
+            languageName:req.body.languageName,
+            categoryType:req.body.categoryType
         });
     Language.create(newCategory, function(err, codeSnippets){
         if(err) return handleError(err);
@@ -183,7 +185,8 @@ app.post('/api/addCategory', function(req, res){
 app.post('/api/updateCategory', function(req, res){
     var newCategory = 
         {
-            languageName:req.body.languageName
+            languageName:req.body.languageName,
+            categoryType:req.body.categoryType 
         };
     var query = { _id : req.body._id }
     Language.findByIdAndUpdate(query, { $set : newCategory }, {new :true }, function(err, category){
