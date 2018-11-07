@@ -138,7 +138,6 @@ app.post('/api/addCodeSnippet', function(req, res){
             codesnippet: req.body.codesnippet,
             userId: req.body.userId
         });    
-    console.log(newCodeSnippet.userId);
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
         if(err) return handleError(err);
     });
