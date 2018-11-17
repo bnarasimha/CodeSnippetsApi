@@ -1,8 +1,7 @@
 set -x;
 export NODE_ENV=$1; 
 cd prod/api; 
-# sudo rm -r node_modules; 
-unzip -o ~/artifacts/prod/api/deploy.zip; 
+sudo unzip -o ~/artifacts/prod/api/deploy.zip; 
 sudo chmod 777 node_modules; 
 sudo chmod 777 config;
 npm install; 
