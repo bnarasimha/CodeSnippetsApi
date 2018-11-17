@@ -226,6 +226,6 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
 
  
 //Run
-var port = 8081;
+var port = cfg.port;
 app.listen(port);
 console.log('App is listening on %d port', port);
