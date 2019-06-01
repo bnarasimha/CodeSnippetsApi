@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "npm install && node index.js "
+    "start": "npm install -force && node index.js "
   },
   "dependencies": {
     "body-parser": "^1.17.2",
