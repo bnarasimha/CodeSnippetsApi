@@ -8,12 +8,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-
-const env = process.env.NODE_ENV || 'local'
-console.log('env: ' + env)
-
-var cfg = require('./config/config.' + env)
-
+var cfg = require('./config')
 mongoose.connect(cfg.MongoUri);
 
 // Configuration
