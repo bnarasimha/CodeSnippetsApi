@@ -1,12 +1,12 @@
 {
   "name": "apicodesnippets",
   "description": "Api to get all Code Snippets info",
-  "main": "server.js",
+  "main": "index.js",
   "version": "0.0.0",
   "author": {
-    "email": "",
+    "email": "bnarasimha21@gmail.com",
     "name": "Narasimha Badrinath",
-    "url": "narasimhabadrinath.com"
+    "url": "http://narasimhabadrinath.com"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
