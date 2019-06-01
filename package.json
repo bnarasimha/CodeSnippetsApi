@@ -17,7 +17,12 @@
     "start": "node index.js"
   },
   "dependencies": {
-    
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2"
   },
   "devDependencies": {
     "body-parser": "^1.17.2",
