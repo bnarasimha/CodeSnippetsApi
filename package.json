@@ -2,7 +2,7 @@
   "name": "apicodesnippets",
   "description": "Api to get all Code Snippets info",
   "main": "index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": {
     "email": "bnarasimha21@gmail.com",
     "name": "Narasimha Badrinath",
