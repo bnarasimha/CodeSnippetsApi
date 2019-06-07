@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-const node_env = process.env_NODE_ENV || 'local';
+const node_env = process.env.NODE_ENV || 'local';
 console.log('env: ' + node_env);
 var cfg = require('./config/' + 'config.' + node_env)
 
