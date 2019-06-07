@@ -11,7 +11,13 @@ var methodOverride = require('method-override');
 const node_env = process.env_NODE_ENV || 'local';
 console.log('env: ' + node_env);
 var cfg = require('./config/' + 'config.' + node_env)
-mongoose.connect(cfg.MongoUri);
+
+mongoose.Promise = global.Promise;
+mongoose.connect(cfg.MongoUri, {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
+});
 
 // Configuration
 app.use(cors());
