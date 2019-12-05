@@ -34,7 +34,8 @@ var CodeSnippet = mongoose.model('CodeSnippet', {
     language : String,
     title : String,
     urlreference: String,
-    userId : String
+    userId : String,
+    tags: String
 });
 
 // Language Model
@@ -147,7 +148,8 @@ app.post('/api/addCodeSnippet', function(req, res){
             title: req.body.title,
             codesnippet: req.body.codesnippet,
             urlreference: req.body.urlreference,
-            userId: req.body.userId
+            userId: req.body.userId,
+            tags: req.body.tags
         });    
 
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
@@ -162,7 +164,8 @@ app.post('/api/editCodeSnippet', function(req, res){
                                 language : req.body.language,
                                 title : req.body.title,
                                 codesnippet: req.body.codesnippet,
-                                urlreference : req.body.urlreference
+                                urlreference : req.body.urlreference,
+                                tags : req.body.tags
                             };
 
     var query = { _id: req.body._id}
