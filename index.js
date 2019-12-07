@@ -130,6 +130,18 @@ app.get('/api/CodeSnippets/language/:userId/:language', function(req, res){
     });
 });
 
+//Filter code snippets based on tags
+app.get('/api/CodeSnippets/tags/:userId/:tags', function(req, res){
+    var userId = req.params.userId;
+    var tags = req.params.tags;
+    CodeSnippet.find({'userId': userId, 'tags': tags}, function(err, codeSnippets){
+        if(err){
+            console.log(err);
+        }
+        res.json(codeSnippets);
+    });
+});
+
 // Get Code Snip Detail
 app.get('/api/codeSnippets/:codeSnipId', function(req, res){
     CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
