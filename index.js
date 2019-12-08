@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-const node_env = process.env.NODE_ENV || 'local';
+const node_env = process.env.NODE_ENV || 'prod';
 console.log('env: ' + node_env);
 var cfg = require('./config/' + 'config.' + node_env)
 
@@ -133,8 +133,8 @@ app.get('/api/CodeSnippets/language/:userId/:language', function(req, res){
 //Filter code snippets based on tags
 app.get('/api/CodeSnippets/tags/:userId/:tags', function(req, res){
     var userId = req.params.userId;
-    var tags = req.params.tags;
-    CodeSnippet.find({'userId': userId, 'tags': tags}, function(err, codeSnippets){
+    var tag = req.params.tags;
+    CodeSnippet.find({ 'userId' : userId, 'tags' : new RegExp(tag, 'i') }, function(err, codeSnippets){
         if(err){
             console.log(err);
         }
