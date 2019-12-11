@@ -3,6 +3,7 @@
   "description": "Api to get all Code Snippets info",
   "main": "index.js",
   "version": "1.0.0",
+  "type": "module",
   "author": {
     "email": "bnarasimha21@gmail.com",
     "name": "Narasimha Badrinath",
