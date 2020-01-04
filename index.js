@@ -95,23 +95,12 @@ app.get('/api/codeSnippets', function(req, res){
     });
 });
 
-// Get only My Code Snippets
-app.get('/api/getMyCodeSnippets/:userId', function(req, res){
-    var userId = req.params.userId;
-    CodeSnippet.find({'userId': userId}, function(err, codeSnippets){
-        if(err){
-            res.send(err);
-        }
-        res.json(codeSnippets);
-    });
-});
-
 // Search Code Snippets
-app.get('/api/searchCodeSnippets/:userId/:searchText', function(req, res){
+app.get('/api/searchCodeSnippets/:searchText', function(req, res){
     var userId = req.params.userId;
     var searchText = req.params.searchText;
 
-    CodeSnippet.find({'userId': userId, 'title': new RegExp(searchText, 'i')}, function(err, codeSnippets){
+    CodeSnippet.find({'title': new RegExp(searchText, 'i')}, function(err, codeSnippets){
         if(err){
             res.send(err);
         }
@@ -120,9 +109,9 @@ app.get('/api/searchCodeSnippets/:userId/:searchText', function(req, res){
 });
 
 //Filter code snippets based on language
-app.get('/api/CodeSnippets/language/:userId/:language', function(req, res){
+app.get('/api/CodeSnippets/language/:language', function(req, res){
     var userId = req.params.userId;
-    CodeSnippet.find({'userId': userId, language:req.params.language}, function(err, codeSnippets){
+    CodeSnippet.find({language:req.params.language}, function(err, codeSnippets){
         if(err){
             console.log(err);
         }
@@ -131,10 +120,10 @@ app.get('/api/CodeSnippets/language/:userId/:language', function(req, res){
 });
 
 //Filter code snippets based on tags
-app.get('/api/CodeSnippets/tags/:userId/:tags', function(req, res){
+app.get('/api/CodeSnippets/tags/:tags', function(req, res){
     var userId = req.params.userId;
     var tag = req.params.tags;
-    CodeSnippet.find({ 'userId' : userId, 'tags' : new RegExp(tag, 'i') }, function(err, codeSnippets){
+    CodeSnippet.find({'tags' : new RegExp(tag, 'i') }, function(err, codeSnippets){
         if(err){
             console.log(err);
         }
