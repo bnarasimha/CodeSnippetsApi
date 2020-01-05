@@ -7,6 +7,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+const Schema = mongoose.Schema;
 
 const node_env = process.env.NODE_ENV || 'prod';
 console.log('env: ' + node_env);
@@ -29,15 +30,17 @@ app.use(bodyParser.json({type: 'application/vhd.api+json'}));
 app.use(methodOverride());
 
 var CodeSnippet = mongoose.model('CodeSnippet', {
+    _id : Schema.Types.ObjectId,
     codesnippet : String,
     language : String,
     title : String,
     urlreference: String,
     userId : String,
-    tags: String
+    tags: String,
+    votes: [{ type: Schema.Types.ObjectId, ref:'Vote' }]
 });
 
-var Language = mongoose.model('language', {
+var Language = mongoose.model('Language', {
     languageName : String,
     categoryType : String
 });
@@ -47,8 +50,14 @@ var User = mongoose.model('User', {
     isAdmin : Boolean
 });
 
+var Vote = mongoose.model('Vote', {
+    codeSnippetId : { type: Schema.Types.ObjectId, ref: 'CodeSnippet' },
+    votes : String
+});
+
 
 exports.app = app;
 exports.CodeSnippet = CodeSnippet;
 exports.Language = Language;
 exports.User = User;
+exports.Vote = Vote;

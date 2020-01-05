@@ -2,6 +2,7 @@ var setup = require('../setup.js');
 
 var app = setup.app;
 var CodeSnippet = setup.CodeSnippet;
+var Vote = setup.Vote;
 
 // Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
@@ -92,7 +93,6 @@ app.post('/api/editCodeSnippet', function(req, res){
     });
 });
 
-
 // Delete Code Snippet
 app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
     CodeSnippet.findById(req.params.codeSnipId, function(err, codeSnippet){
@@ -103,3 +103,34 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
             codeSnippet.remove();
     });
 }); 
+
+app.get('/api/getCodeVotesAndComments/:codeSnipId', function(req, res){
+    CodeSnippet.findById(req.params.codeSnipId)
+    .populate('votes') // multiple path names in one requires mongoose >= 3.6
+    .exec(function(err, CodeSnippet) {
+        // handle err
+        // usersDocuments formatted as desired
+        if(err){
+            console.log(err);
+        }
+        res.json(CodeSnippet);
+    });
+
+
+    // CodeSnippet.aggregate(
+    //     [   {
+    //             $lookup: {
+    //                 from: "Votes", // collection to join
+    //                 localField: "_id",//field from the input documents
+    //                 foreignField: "codeSnippetId",//field from the documents of the "from" collection
+    //                 as: "votes"// output array field
+    //             }
+    //         }],function (error, data) {
+    //             return res.json(data);
+    //         //handle error case also
+    // });
+});
+
+
+
+
