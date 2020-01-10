@@ -4,7 +4,7 @@ var app = setup.app;
 var Vote = setup.Vote;
 
 app.get('/api/getCodeSnippetVotes/:codeSnipId', function(req, res){
-    Vote.find({codeSnippetId : req.params.codeSnipId})
+    Vote.findOne({codeSnippetId : req.params.codeSnipId})
     .exec(function(err, Vote){
         if(err){
             console.log(err);
