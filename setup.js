@@ -30,7 +30,6 @@ app.use(bodyParser.json({type: 'application/vhd.api+json'}));
 app.use(methodOverride());
 
 var CodeSnippet = mongoose.model('CodeSnippet', {
-    _id : Schema.Types.ObjectId,
     codesnippet : String,
     language : String,
     title : String,
