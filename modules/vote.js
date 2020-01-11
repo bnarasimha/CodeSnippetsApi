@@ -16,22 +16,18 @@ app.get('/api/getCodeSnippetVotes/:codeSnipId', function(req, res){
 app.post('/api/addCodeSnippetVote', function(req, res){
     var newCodeSnippetVote = new Vote({
         codeSnippetId : req.body.codeSnippetId,
-        votes : "1"
+        votes : req.body.votes
     });
 
     Vote.create(newCodeSnippetVote, function(err, addedVote){
-        if(err) return handleError(err);
+        if(err) console.log(err);
     });
 });
 
 app.post('/api/updateCodeSnippetVote', function(req, res){
-
-    var updateCodeSnippetVote = {
-        votes : req.body.votes
-    };
     
-    Vote.findOne({ _id: req.body._id }, function(err, resultVote){
-        resultVote.votes = updateCodeSnippetVote.votes;
+    Vote.findOne({ codeSnippetId : req.body.codeSnippetId }, function(err, resultVote){
+        resultVote.votes = req.body.votes;
         resultVote.save();
 
         if(err)  return handleError(err);
