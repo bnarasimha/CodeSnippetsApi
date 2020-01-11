@@ -36,8 +36,7 @@ var CodeSnippet = mongoose.model('CodeSnippet', {
     title : String,
     urlreference: String,
     userId : String,
-    tags: String,
-    votes: [{ type: Schema.Types.ObjectId, ref:'Vote' }]
+    tags: String
 });
 
 var Language = mongoose.model('Language', {
