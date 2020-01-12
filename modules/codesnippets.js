@@ -71,8 +71,10 @@ app.post('/api/addCodeSnippet', function(req, res){
         });    
 
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
-        //if(err) return handleError(err);
-        res.send(err);
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
     });
 });
 
