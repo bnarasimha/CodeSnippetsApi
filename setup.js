@@ -29,14 +29,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vhd.api+json'}));
 app.use(methodOverride());
 
-var CodeSnippet = mongoose.model('CodeSnippet', {
+const VotesSchema = Schema({ 
+    codeSnippetId : [{ type: Schema.Types.ObjectId, ref: 'CodeSnippet'}],
+    votes : String
+});
+var Vote = mongoose.model('Vote', VotesSchema);
+
+const CodeSnippetSchema = Schema ({
     codesnippet : String,
     language : String,
     title : String,
     urlreference: String,
     userId : String,
-    tags: String
+    tags: String,
+    codeSnippetVotes: [{ type: Schema.Types.ObjectId, ref: 'Vote'}]
 });
+var CodeSnippet = mongoose.model('CodeSnippet', CodeSnippetSchema);
 
 var Language = mongoose.model('Language', {
     languageName : String,
@@ -46,11 +54,6 @@ var Language = mongoose.model('Language', {
 var User = mongoose.model('User', {
     userId : String,
     isAdmin : Boolean
-});
-
-var Vote = mongoose.model('Vote', {
-    codeSnippetId : { type: Schema.Types.ObjectId, ref: 'CodeSnippet' },
-    votes : String
 });
 
 
