@@ -5,14 +5,16 @@ var CodeSnippet = setup.CodeSnippet;
 
 // Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
-    CodeSnippet.find({}, function(err, codeSnippets){
+    CodeSnippet.find()
+    .populate({ path : 'codeSnippetVotes'})
+    .exec(function(err, codeSnippets){
         if(err){
             console.log(err);
             res.send(err);
-        }
+        }        
         console.log(codeSnippets); 
         res.json(codeSnippets);
-    });
+    }); 
 });
 
 // Search Code Snippets

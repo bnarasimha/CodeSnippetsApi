@@ -26,6 +26,11 @@ app.post('/api/addCodeSnippetVote', function(req, res){
 
 app.post('/api/updateCodeSnippetVote', function(req, res){
     
+    var updateCodeSnippetVote = new Vote({
+        codeSnippetId : req.body.codeSnippetId,
+        votes : req.body.votes
+    });
+
     Vote.findOne({ codeSnippetId : req.body.codeSnippetId }, function(err, resultVote){
         if(resultVote == null)
             res.send("Could not find vote record");
@@ -33,6 +38,6 @@ app.post('/api/updateCodeSnippetVote', function(req, res){
         resultVote.save();
 
         if(err)  return handleError(err);
-        return "Update Successful";
+        return res.json(updateCodeSnippetVote);
     });
 })

@@ -30,7 +30,7 @@ app.use(bodyParser.json({type: 'application/vhd.api+json'}));
 app.use(methodOverride());
 
 const VotesSchema = Schema({ 
-    codeSnippetId : [{ type: Schema.Types.ObjectId, ref: 'CodeSnippet'}],
+    codeSnippetId : { type: Schema.Types.ObjectId },
     votes : String
 });
 var Vote = mongoose.model('Vote', VotesSchema);
