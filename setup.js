@@ -46,6 +46,12 @@ const CodeSnippetSchema = Schema ({
 });
 var CodeSnippet = mongoose.model('CodeSnippet', CodeSnippetSchema);
 
+const CommentSchema = Schema ({
+    codeSnippetId: { type: Schema.Types.ObjectId },
+    comment: String
+});
+var Comment = mongoose.model("Comment", CommentSchema);
+
 var Language = mongoose.model('Language', {
     languageName : String,
     categoryType : String
@@ -62,3 +68,4 @@ exports.CodeSnippet = CodeSnippet;
 exports.Language = Language;
 exports.User = User;
 exports.Vote = Vote;
+exports.Comment = Comment;

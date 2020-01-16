@@ -4,6 +4,7 @@ var languages = require('./modules/languages.js');
 var user = require('./modules/user.js');
 var tags = require('./modules/tags.js');
 var tags = require('./modules/vote.js');
+var comments = require('./modules/comment.js')
 
 var app = setup.app;
 
