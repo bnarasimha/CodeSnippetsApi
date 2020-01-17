@@ -48,7 +48,8 @@ var CodeSnippet = mongoose.model('CodeSnippet', CodeSnippetSchema);
 
 const CommentSchema = Schema ({
     codeSnippetId: { type: Schema.Types.ObjectId },
-    comment: String
+    comment: String,
+    userId: String
 });
 var Comment = mongoose.model("Comment", CommentSchema);
 

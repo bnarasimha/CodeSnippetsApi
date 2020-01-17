@@ -17,7 +17,8 @@ app.get('/api/getCodeSnippetComments/:codeSnipId', function(req, res){
 app.post('/api/addCodeSnippetComment', function(req, res){
     var newCodeSnippetComment = new Comment({
         codeSnippetId : req.body.codeSnippetId,
-        comment : req.body.comment
+        comment : req.body.comment,
+        userId: req.body.userId
     });
 
     Comment.create(newCodeSnippetComment, function(err, addedComment){
