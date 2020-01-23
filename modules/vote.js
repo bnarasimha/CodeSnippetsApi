@@ -21,6 +21,7 @@ app.post('/api/addCodeSnippetVote', function(req, res){
 
     Vote.create(newCodeSnippetVote, function(err, addedVote){
         if(err) console.log(err);
+        return res.json(newCodeSnippetVote);
     });
 });
 

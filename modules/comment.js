@@ -9,7 +9,6 @@ app.get('/api/getCodeSnippetComments/:codeSnipId', function(req, res){
         if(err){
             console.log(err);
         }
-        console.log(comments);
         res.json(comments);
     });
 });
@@ -23,8 +22,24 @@ app.post('/api/addCodeSnippetComment', function(req, res){
 
     Comment.create(newCodeSnippetComment, function(err, addedComment){
         if(err) console.log(err);
+        return res.json(addedComment);
     });
 });
+
+// Delete Code Snippet
+app.delete('/api/deleteCodeSnippetComment/:codeCommentId', function(req, res){
+    Comment.findById(req.params.codeCommentId, function(err, codeSnippetComment){
+        if(err){ console.log(err); }
+        
+        if(codeSnippetComment){
+            codeSnippetComment.remove();
+            res.send("Deleted");
+        }
+        else{
+            res.send("Error deleting comment");
+        }
+    });
+}); 
 
 app.post('/api/updateCodeSnippetComment', function(req, res){
     var updateCodeSnippetComment = new Comment({
