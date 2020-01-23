@@ -42,7 +42,7 @@ const CodeSnippetSchema = Schema ({
     urlreference: String,
     userId : String,
     tags: String,
-    codeSnippetVotes: [{ type: Schema.Types.ObjectId, ref: 'Vote'}]
+    createdDate: Date
 });
 var CodeSnippet = mongoose.model('CodeSnippet', CodeSnippetSchema);
 

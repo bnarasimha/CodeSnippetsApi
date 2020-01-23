@@ -69,7 +69,8 @@ app.post('/api/addCodeSnippet', function(req, res){
             codesnippet: req.body.codesnippet,
             urlreference: req.body.urlreference,
             userId: req.body.userId,
-            tags: req.body.tags
+            tags: req.body.tags,
+            createdDate: req.body.createdDate
         });    
 
     CodeSnippet.create(newCodeSnippet, function(err, codeSnippets){
