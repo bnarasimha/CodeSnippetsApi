@@ -2,6 +2,8 @@ var setup = require('../setup.js');
 
 var app = setup.app;
 var CodeSnippet = setup.CodeSnippet;
+var Comment = setup.Comment;
+var Vote = setup.Vote;
 
 // Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
@@ -106,6 +108,18 @@ app.delete('/api/deleteCodeSnippet/:codeSnipId', function(req, res){
         }
         if(codeSnippet)
             codeSnippet.remove();
+    });
+
+    Comment.find({codeSnippetId : req.params.codeSnipId}, function(err, comments){
+        comments.forEach(comment => {
+            comment.remove();
+        });
+    });
+
+    Vote.find({codeSnippetId: req.params.codeSnipId}, function(err, votes){
+        votes.forEach(vote => {
+            vote.remove();
+        });
     });
 }); 
 
