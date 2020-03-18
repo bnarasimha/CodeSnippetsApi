@@ -1,0 +1,19 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: codesnippetsapi
+spec:
+  selector:
+    matchLabels:
+      app: codesnippetsapi
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: codesnippetsapi
+    spec:
+      containers:
+      - name: codesnippetsapi
+        image: bnarasimha21/codesnippetsapi:1.0 
+        ports:
+        - containerPort: 4000

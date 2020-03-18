@@ -8,6 +8,6 @@ var comments = require('./modules/comment.js')
 
 var app = setup.app;
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 app.listen(port);
 console.log('App is listening on %d port', port);
