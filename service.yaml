@@ -4,9 +4,9 @@ metadata:
     name: codesnippetsapi-service
 spec:
     selector:
-        app: codesnippetsapi 
+        app: codesnippetsapi    
     ports:
-        - protocol: TCP
-          port: 4000
-          targetPort: 4000
-    type: LoadBalancer
+    - protocol: TCP
+        port: 4000
+        targetPort: 4000
+    type: ClusterIP
