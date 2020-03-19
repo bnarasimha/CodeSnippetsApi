@@ -3,10 +3,10 @@ kind: Service
 metadata:
     name: codesnippetsapi-service
 spec:
+    type: LoadBalancer
     selector:
         app: codesnippetsapi    
     ports:
-    - protocol: TCP
-        port: 4000
-        targetPort: 4000
-    type: ClusterIP
+        - protocol: TCP
+          port: 4000
+          targetPort: 4000
