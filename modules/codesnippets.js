@@ -7,7 +7,7 @@ var Vote = setup.Vote;
 
 // Get All Code Snippets
 app.get('/api/codeSnippets', function(req, res){
-    CodeSnippet.find()
+    CodeSnippet.find().sort({createdDate: -1})
     .populate({ path : 'codeSnippetVotes'})
     .exec(function(err, codeSnippets){
         if(err){
